@@ -16,7 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Solve CORS
-app.use(cors({ origin: '*'}));
+app.use(cors({ credentials: false, origin: "https://react-gram-front.vercel.app", allowedHeaders: ["Content-Type", "Authorization"], 
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], }));
 
 // Upload directory
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));

@@ -5,6 +5,7 @@ import cors from "cors";
 
 import router from "./api/routes/Router";
 import conn from "./api/config/db"; // Importa a conexão com o banco de dados
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
 const port = process.env.PORT;
 
@@ -21,10 +22,14 @@ app.use(cors({ credentials: true, origin: '*' }));
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // Rotas
-app.use(router);
+app.use("/api" ,router);
 
 app.listen(port, () => {
     console.log(`App rodando na porta ${port}`);
 });
 
 conn();
+
+export default (req: VercelRequest, res: VercelResponse) => {
+    return app(req, res);
+  };

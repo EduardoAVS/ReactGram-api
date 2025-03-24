@@ -1,4 +1,6 @@
-import userRoutes from "./UserRoutes";
+import photoRoutes from "./PhotoRoutes"
+import userRoutes from "./UserRoutes"
+
 
 import { Request, Response } from "express";
 import { Router } from "express";
@@ -6,6 +8,7 @@ import { Router } from "express";
 const router = Router();
 
 router.use("/api/users", userRoutes); 
+router.use("/api/photos", photoRoutes); 
 
 
 // Teste router

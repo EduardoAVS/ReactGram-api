@@ -1,4 +1,4 @@
-import "dotenv/config"; 
+import "dotenv/config";
 import express from "express";
 import path from "path";
 import cors from "cors";
@@ -7,7 +7,7 @@ import router from "./api/routes/Router";
 import conn from "./api/config/db"; // Importa a conexão com o banco de dados
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000; // Defina um valor padrão caso o PORT não esteja definido
 
 const app = express();
 
@@ -23,14 +23,12 @@ app.use(cors({ credentials: false, origin: "https://react-gram-front.vercel.app"
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // Rotas
-app.use("/api" ,router);
+app.use("/api", router);
 
-app.listen(port, () => {
-    console.log(`App rodando na porta ${port}`);
-});
-
+// Conexão com o banco de dados
 conn();
 
+// Exportar a função handler para Vercel
 export default (req: VercelRequest, res: VercelResponse) => {
-    return app(req, res);
-  };
+  app(req, res); // Chama o app express diretamente
+};

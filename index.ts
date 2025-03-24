@@ -16,7 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Solve CORS
-app.use(cors({ credentials: true, origin: '*' }));
+app.use(cors({ credentials: true, origin: '*', allowedHeaders: ["Content-Type", "Authorization"], 
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], }));
 
 // Upload directory
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));

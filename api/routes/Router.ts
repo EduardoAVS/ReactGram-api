@@ -7,8 +7,8 @@ import { Router } from "express";
 
 const router = Router();
 
-router.use("/api/users", userRoutes); 
-router.use("/api/photos", photoRoutes); 
+router.use("/users", userRoutes); 
+router.use("/photos", photoRoutes); 
 
 
 // Teste router

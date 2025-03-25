@@ -20,7 +20,7 @@ app.use(cors({ credentials: false, origin: "https://react-gram-front.vercel.app"
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], }));
 
 // Upload directory
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "/public/uploads")));
 
 // Rotas
 app.use("/api", router);
